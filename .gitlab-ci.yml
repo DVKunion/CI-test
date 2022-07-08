@@ -1,21 +1,10 @@
 stages:
   - test
 
-include:
-  - remote: http://10.9.33.108/veinmind-runner-gitlab-ci.yml
-
 my-job:
   stage: test
   image: docker:latest
-  # add config
-  extends: .scan-config
-  # set config
-  variables:
-    IMAGE_REF: weakpass:latest
-    EXIT_CODE: 0
   script:
     - docker build -t weakpass:latest -f test/Dockerfile .
-    # add script
-    - !reference [.scan-script, script]
   tags:
     - docker
