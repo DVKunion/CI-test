@@ -8,7 +8,5 @@ my-job:
     IMAGE_REF: ubuntu:latest
   script:
     - docker build -t weakpass:latest -f Dockerfile .
-  tags:
-    - docker
 
 
