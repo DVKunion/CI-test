@@ -1,5 +1,7 @@
 
 
+@Library('veinmind-runner') _
+
 pipeline {
     agent any
 
@@ -9,6 +11,13 @@ pipeline {
                 script {
                     sh 'docker build -t weak:latest -f Dockerfile .'
                 }
+            }
+        }
+    }
+    stage('scan') {
+        steps {
+            script {
+                veinmindRunner.scan("weak:latest", 1)
             }
         }
     }
