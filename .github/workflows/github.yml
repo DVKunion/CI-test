@@ -7,8 +7,3 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker build -t weakpass:latest -f Dockerfile .
-      - uses: chaitin/veinmind-action@main
-          with: 
-            scan-action: scan-host
-            image-ref: weakpass:latest
-            exit-code: 1
