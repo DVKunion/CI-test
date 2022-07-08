@@ -33,17 +33,3 @@ unblock:
     - !reference [.scan-script, script]
   tags:
     - docker
-
-# find security reports and block pipeline
-block:
-  stage: test
-  image: docker:latest
-  extends: .scan-config
-  variables:
-    IMAGE_REF: weakpass:latest
-    EXIT_CODE: 1
-  script:
-    - docker build -t weakpass:latest -f test/Dockerfile .
-    - !reference [.scan-script, script]
-  tags:
-    - docker
