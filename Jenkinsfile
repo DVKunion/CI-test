@@ -13,11 +13,11 @@ pipeline {
                 }
             }
         }
-    }
-    stage('scan') {
-        steps {
-            script {
-                veinmindRunner.scan("weak:latest", 1)
+        stage('scan') {
+            steps {
+                script {
+                    veinmindRunner.scan("weak:latest", 1)
+                }
             }
         }
     }
