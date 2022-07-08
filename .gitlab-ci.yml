@@ -1,10 +1,11 @@
 stages:
   - test
 
+# import scan runner
 include:
   - remote: https://download.veinmind.tech/scripts/veinmind-runner-gitlab-ci.yml
 
-my-job:
+myjob:
   stage: test
   image: docker:latest
   extends: .scan-config
