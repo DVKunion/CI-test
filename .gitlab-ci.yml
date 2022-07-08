@@ -10,11 +10,9 @@ my-job:
   extends: .scan-config
   variables:
     IMAGE_REF: weakpass:latest
-    EXIT_CODE: 1
+    EXIT_CODE: 0
   script:
-    - docker build -t weakpass:latest -f Dockerfile .
+    - docker build -t weakpass:latest -f test/Dockerfile .
     - !reference [.scan-script, script]
   tags:
     - docker
-
-
