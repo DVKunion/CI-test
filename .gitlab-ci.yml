@@ -1,35 +1,21 @@
 stages:
   - test
 
-# import scan runner
 include:
-  - remote: https://download.veinmind.tech/scripts/veinmind-runner-gitlab-ci.yml
+  - remote: http://10.9.33.108/veinmind-runner-gitlab-ci.yml
 
-# no security report
-success:
+my-job:
   stage: test
   image: docker:latest
   # add config
   extends: .scan-config
-  variables:
-    IMAGE_REF: ubuntu:latest
-  script:
-    - docker pull ubuntu:latest
-    # add script
-    - !reference [.scan-script, script]
-  tags:
-    - docker
-
-# find security reports but unblock
-unblock:
-  stage: test
-  image: docker:latest
-  extends: .scan-config
+  # set config
   variables:
     IMAGE_REF: weakpass:latest
     EXIT_CODE: 0
   script:
-    - docker build -t weakpass:latest -f Dockerfile .
+    - docker build -t weakpass:latest -f test/Dockerfile .
+    # add script
     - !reference [.scan-script, script]
   tags:
     - docker
