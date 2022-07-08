@@ -1,0 +1,14 @@
+stages:
+  - test
+
+my-job:
+  stage: test
+  image: docker:latest
+  variables:
+    IMAGE_REF: ubuntu:latest
+  script:
+    - docker build -t weakpass:latest -f Dockerfile .
+  tags:
+    - docker
+
+

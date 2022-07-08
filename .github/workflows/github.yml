@@ -1,0 +1,9 @@
+on: [push]
+
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    name: this is my github workflow
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker build -t weakpass:latest -f Dockerfile .
