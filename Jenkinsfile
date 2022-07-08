@@ -1,3 +1,7 @@
+
+
+@Library('veinmind-runner') _
+
 pipeline {
     agent any
 
@@ -9,4 +13,12 @@ pipeline {
                 }
             }
         }
+        stage('scan') {
+            steps {
+                script {
+                    veinmindRunner.scan("weak:latest", 1)
+                }
+            }
+        }
+    }
 }

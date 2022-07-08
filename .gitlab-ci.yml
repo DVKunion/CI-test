@@ -29,7 +29,7 @@ unblock:
     IMAGE_REF: weakpass:latest
     EXIT_CODE: 0
   script:
-    - docker build -t weakpass:latest -f test/Dockerfile .
+    - docker build -t weakpass:latest -f Dockerfile .
     - !reference [.scan-script, script]
   tags:
     - docker
