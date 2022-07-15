@@ -2,6 +2,8 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+orbs: 
+  veinmind-orb: veinmind-orb/veinmind-orb@dev:5e4e600dc4fa44dda4544aff6aa26f8d48e20dda
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -16,13 +18,9 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: docker build -t weak:latest .
-      - run: docker pull veinmind/veinmind-runner:latest && docker run --rm 
-            --mount 'type=bind,source=/,target=/host,readonly,bind-propagation=rslave' 
-            -v /var/run/docker.sock:/var/run/docker.sock 
-            -v `pwd`:/tool/resource veinmind/veinmind-runner
-            scan-host weak:latest -o report.json -e 0
-
-
+      - veinmind-orb/scan:
+          exit-code: 1
+          image-ref: 'weak:latest'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
