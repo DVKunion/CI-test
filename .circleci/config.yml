@@ -16,11 +16,11 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: docker build -t weak:latest .
-      - run: docker pull veinmind/veinmind-runner:latest && docker run --rm \ 
-              --mount 'type=bind,source=/,target=/host,readonly,bind-propagation=rslave' \ 
-              -v /var/run/docker.sock:/var/run/docker.sock \ 
-              -v `pwd`:/tool/resource veinmind/veinmind-runner \ 
-              scan-host weak:latest -o report.json -e 0
+      - run: docker pull veinmind/veinmind-runner:latest && docker run --rm 
+            --mount 'type=bind,source=/,target=/host,readonly,bind-propagation=rslave' 
+            -v /var/run/docker.sock:/var/run/docker.sock 
+            -v `pwd`:/tool/resource veinmind/veinmind-runner
+            scan-host weak:latest -o report.json -e 0
 
 
 # Invoke jobs via workflows
